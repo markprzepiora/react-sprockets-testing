@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "mincer": "^1.2.2",
-    "react-tools": "^0.12.2"
+    "react-tools": "^0.12.2",
+    "uglify-js": "^2.4.16"
   }
 }

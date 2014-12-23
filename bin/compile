@@ -17,3 +17,6 @@ node_modules/.bin/mincer -I .src-compiled app.js -o dist/
 # Remove manifest and rename app.js
 rm -f dist/manifest.json
 mv dist/app-*.js dist/app.js
+
+# Uglify
+cat dist/app.js | node_modules/.bin/uglifyjs -m > dist/app.min.js
