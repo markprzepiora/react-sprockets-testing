@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Copy src tree to compiled tree
+rsync -a src/ .src-compiled/
+
+# Compile down jsx -> js inside the temporary directory
+find .src-compiled -type f -name '*.jsx' | while read infile; do
+  node_modules/.bin/jsx "$infile" > ${infile%.*}.js
+done
+
+# Blow away dist
+rm -rf dist/
+
+# Actually compile everything down to a single file
+node_modules/.bin/mincer -I .src-compiled app.js -o dist/
+
+# Remove manifest and rename app.js
+rm -f dist/manifest.json
+mv dist/app-*.js dist/app.js
