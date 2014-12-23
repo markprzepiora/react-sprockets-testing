@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+bin/watch &
+(cd dist && ../node_modules/.bin/static-server -p 3000)
+
+wait
