@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 # Copy src tree to compiled tree
-rsync -a src/ .src-compiled/
+rsync -a --delete src/ .src-compiled/
 
 # Compile down jsx -> js inside the temporary directory
 find .src-compiled -type f -name '*.jsx' | while read infile; do
-  node_modules/.bin/jsx "$infile" > ${infile%.*}.js
+  outfile="${infile%.*}.js"
+  node_modules/.bin/jsx "$infile" > "$outfile"
 done
 
 # Blow away dist
